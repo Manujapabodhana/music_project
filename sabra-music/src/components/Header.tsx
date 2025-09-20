@@ -40,7 +40,9 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled.a`
+const NavLink = styled.button`
+  background: none;
+  border: none;
   color: white;
   text-transform: uppercase;
   font-size: 0.9rem;
@@ -48,6 +50,7 @@ const NavLink = styled.a`
   padding: 0.5rem 0;
   position: relative;
   transition: color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     color: #ff6b35;
@@ -87,15 +90,25 @@ const AdminButton = styled.button`
   }
 `;
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onScheduleClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onScheduleClick }) => {
+  const handleScheduleClick = () => {
+    if (onScheduleClick) {
+      onScheduleClick();
+    }
+  };
+
   return (
     <HeaderContainer>
       <Logo>SABRA MUSIC</Logo>
       <Nav>
-        <NavLink href="#schedule">Schedule</NavLink>
-        <NavLink href="#upcoming">Up Coming</NavLink>
-        <NavLink href="#history">History</NavLink>
-        <NavLink href="#about">About</NavLink>
+        <NavLink onClick={handleScheduleClick}>Schedule</NavLink>
+        <NavLink>Up Coming</NavLink>
+        <NavLink>History</NavLink>
+        <NavLink>About</NavLink>
       </Nav>
       <AdminButton>Admin</AdminButton>
     </HeaderContainer>

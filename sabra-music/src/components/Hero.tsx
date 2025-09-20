@@ -27,7 +27,7 @@ const Subtitle = styled.p`
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: 500;
 `;
 
@@ -35,7 +35,7 @@ const Title = styled.h1`
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   color: white;
 `;
 
@@ -49,7 +49,7 @@ const SignUpButton = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 
   &:hover {
     background: #ff6b35;
@@ -94,7 +94,17 @@ const SocialIcon = styled.a`
   }
 `;
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onSignupClick?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
+  const handleSignupClick = () => {
+    if (onSignupClick) {
+      onSignupClick();
+    }
+  };
+
   return (
     <HeroContainer>
       <HeroContent>
@@ -102,7 +112,7 @@ const Hero: React.FC = () => {
         <Title>
           Feel The Rhythm Of Your Soul!
         </Title>
-        <SignUpButton>Sign Up</SignUpButton>
+        <SignUpButton onClick={handleSignupClick}>Sign Up</SignUpButton>
         <SocialContainer>
           <FollowText>Follow</FollowText>
           <SocialLinks>
